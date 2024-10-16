@@ -85,7 +85,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   /* USER CODE BEGIN 2 */
-
+  main_cpp();
   /* USER CODE END 2 */
 
   /* Infinite loop */
