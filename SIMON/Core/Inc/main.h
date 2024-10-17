@@ -93,8 +93,6 @@ void Error_Handler(void);
 #define BTN3_Pin GPIO_PIN_6
 #define BTN3_GPIO_Port GPIOC
 #define BTN3_EXTI_IRQn EXTI9_5_IRQn
-#define BUZZER_Pin GPIO_PIN_7
-#define BUZZER_GPIO_Port GPIOC
 #define SPI_CS_Pin GPIO_PIN_8
 #define SPI_CS_GPIO_Port GPIOA
 #define BTN1_Pin GPIO_PIN_11
