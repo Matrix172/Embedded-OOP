@@ -31,7 +31,10 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <mainhpp.hpp>
+#include "mainhpp.hpp"
+#include "stdio.h"
+#include "stdlib.h"
+extern SPI_HandleTypeDef hspi1;
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -62,6 +65,15 @@ void Error_Handler(void);
 #define BTNCARTE_Pin GPIO_PIN_13
 #define BTNCARTE_GPIO_Port GPIOC
 #define BTNCARTE_EXTI_IRQn EXTI15_10_IRQn
+#define SPI_SCK_Pin GPIO_PIN_5
+#define SPI_SCK_GPIO_Port GPIOA
+#define SPI_MISO_Pin GPIO_PIN_6
+#define SPI_MISO_GPIO_Port GPIOA
+#define SPI_MOSI_Pin GPIO_PIN_7
+#define SPI_MOSI_GPIO_Port GPIOA
+#define BTN4_Pin GPIO_PIN_5
+#define BTN4_GPIO_Port GPIOC
+#define BTN4_EXTI_IRQn EXTI9_5_IRQn
 #define L0_Pin GPIO_PIN_1
 #define L0_GPIO_Port GPIOB
 #define L1_Pin GPIO_PIN_2
@@ -83,6 +95,8 @@ void Error_Handler(void);
 #define BTN3_EXTI_IRQn EXTI9_5_IRQn
 #define BUZZER_Pin GPIO_PIN_7
 #define BUZZER_GPIO_Port GPIOC
+#define SPI_CS_Pin GPIO_PIN_8
+#define SPI_CS_GPIO_Port GPIOA
 #define BTN1_Pin GPIO_PIN_11
 #define BTN1_GPIO_Port GPIOA
 #define BTN1_EXTI_IRQn EXTI15_10_IRQn
