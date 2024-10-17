@@ -105,3 +105,15 @@ SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_tim_ex.cyclo
 SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_tim_ex.d
 SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_tim_ex.o
 SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_tim_ex.su
+SIMON/Debug/Drivers/display/max7219_Yncrea2.cyclo
+SIMON/Debug/Drivers/display/max7219_Yncrea2.d
+SIMON/Debug/Drivers/display/max7219_Yncrea2.su
+SIMON/Debug/Drivers/display/subdir.mk
+SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_spi.cyclo
+SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_spi.d
+SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_spi.o
+SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_spi.su
+SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_tim.cyclo
+SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_tim.d
+SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_tim.o
+SIMON/Debug/Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_tim.su
