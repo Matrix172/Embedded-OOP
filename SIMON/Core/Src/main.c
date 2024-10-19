@@ -59,7 +59,10 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int __io_putchar(int ch){
+	ITM_SendChar(ch);
+	return ch;
+}
 /* USER CODE END 0 */
 
 /**

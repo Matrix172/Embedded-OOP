@@ -1,5 +1,4 @@
-Core/cpp/maincpp.o: ../Core/cpp/maincpp.cpp \
- C:/Users/mdejeante/STM32CubeIDE/workspace_1.16.0/Embedded-OOP/SIMON/Core/cpp/mainhpp.hpp \
+Core/cpp/maincpp.o: ../Core/cpp/maincpp.cpp ../Core/cpp/mainhpp.hpp \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h \
  ../Core/Inc/stm32l1xx_hal_conf.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h \
@@ -27,7 +26,7 @@ Core/cpp/maincpp.o: ../Core/cpp/maincpp.cpp \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_exti.h
-C:/Users/mdejeante/STM32CubeIDE/workspace_1.16.0/Embedded-OOP/SIMON/Core/cpp/mainhpp.hpp:
+../Core/cpp/mainhpp.hpp:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:
 ../Core/Inc/stm32l1xx_hal_conf.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h:

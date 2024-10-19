@@ -1,27 +1,43 @@
 /*
- * mainhpp.hpp
+ * main_cpp.hpp
  *
  *  Created on: Oct 16, 2024
- *      Author: loick.lepetit
+ *      Author: mdejeante
  */
 
-#ifndef CPP_MAIN_HPP_
-#define CPP_MAIN_HPP_
+#ifndef CPP_MAIN_CPP_HPP_
+#define CPP_MAIN_CPP_HPP_
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-/* BEGIN USER CODE C DEFINITIONS */
+
 #include "stm32l1xx_hal.h"
 void main_cpp();
-/* END USER CODE C DEFINITIONS */
+
 #ifdef __cplusplus
 }
 #endif
 
 #ifdef __cplusplus
-/* BEGIN USER CODE C++ DEFINITIONS */
+#include <iostream>
+class A {
+public:
+    // Constructeur par défaut (optionnel si tu n'as pas besoin d'initialisation spécifique)
+    A() {
+        std::cout << "Constructeur de A appelé" << std::endl;
+    }
 
-/* END USER CODE C++ DEFINITIONS */
+    // Méthode hello()
+    void hello(void) {
+        std::cout << "Hello CPP" << std::endl;
+    }
+
+    // Destructeur
+    ~A() {
+        std::cout << "Destructeur de A appelé" << std::endl;
+    }
+};
 #endif
-#endif /* CPP_MAIN_HPP_ */
+
+#endif /* CPP_MAIN_CPP_HPP_ */

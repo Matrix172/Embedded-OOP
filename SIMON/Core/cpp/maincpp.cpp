@@ -1,19 +1,20 @@
 /*
- * maincpp.cpp
+ * main_cpp.cpp
  *
  *  Created on: Oct 16, 2024
  *      Author: mdejeante
  */
-#include <mainhpp.hpp>
-
+#include "mainhpp.hpp"
 
 void main_cpp(void){
-	// User C++ code
 
-	while(1) {
-		__NOP();
-	}
+	A var_a;
+	var_a.hello();
+
+
+//	while(1){
+//		__NOP();
+//	}
 }
-
 
 
