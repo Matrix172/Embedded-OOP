@@ -138,7 +138,10 @@ void partieSimon(int nb_joueurs)
 		// Montrer la séquence
 		simon.creationSequence();
 		simon.montrerSequence();
+		simon.saisirSequence();
+		simon.sequencecompare();
 
+		/*
 		// Joueur 1 doit entrer la séquence
 		if (!simon.saisirSequence(J1))
 		{
@@ -155,7 +158,7 @@ void partieSimon(int nb_joueurs)
 				break;
 			}
 		}
-
+		*/
 		// La séquence continue si tout le monde réussit
 	}
 

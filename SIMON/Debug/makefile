@@ -86,8 +86,8 @@ all: main-build
 main-build: SIMON.elf secondary-outputs
 
 # Tool invocations
-SIMON.elf SIMON.map: $(OBJS) $(USER_OBJS) C:\Users\loick.lepetit\STM32CubeIDE\workspace_1.13.0\Embedded-OOP\SIMON\STM32L152RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "SIMON.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\loick.lepetit\STM32CubeIDE\workspace_1.13.0\Embedded-OOP\SIMON\STM32L152RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SIMON.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+SIMON.elf SIMON.map: $(OBJS) $(USER_OBJS) C:\Users\sbapo\STM32CubeIDE\workspace_1.16.1\Embedded-OOP\SIMON\STM32L152RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "SIMON.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\sbapo\STM32CubeIDE\workspace_1.16.1\Embedded-OOP\SIMON\STM32L152RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SIMON.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
