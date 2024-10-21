@@ -6,4 +6,4 @@
 ../Core/Src/main.c:232:13:MX_TIM3_Init	7
 ../Core/Src/main.c:296:13:MX_GPIO_Init	1
 ../Core/Src/main.c:354:6:HAL_GPIO_EXTI_Callback	9
-../Core/Src/main.c:387:6:Error_Handler	1
+../Core/Src/main.c:389:6:Error_Handler	1

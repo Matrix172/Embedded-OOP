@@ -45,7 +45,7 @@ SPI_HandleTypeDef hspi1;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
-
+int statut = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -360,10 +360,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 
 	case BTN1_Pin:
 		HAL_GPIO_TogglePin(L1_GPIO_Port, L1_Pin);
+		statut = 1;
 		break;
 
 	case BTN2_Pin:
 		HAL_GPIO_TogglePin(L2_GPIO_Port, L2_Pin);
+		statut = 2;
 		break;
 
 	case BTN3_Pin:
