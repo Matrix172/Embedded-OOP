@@ -5,13 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Core/cpp/maincpp.cpp 
+../Core/cpp/maincpp.cpp \
+../Core/cpp/periphcpp.cpp 
 
 OBJS += \
-./Core/cpp/maincpp.o 
+./Core/cpp/maincpp.o \
+./Core/cpp/periphcpp.o 
 
 CPP_DEPS += \
-./Core/cpp/maincpp.d 
+./Core/cpp/maincpp.d \
+./Core/cpp/periphcpp.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ Core/cpp/%.o Core/cpp/%.su Core/cpp/%.cyclo: ../Core/cpp/%.cpp Core/cpp/subdir.m
 clean: clean-Core-2f-cpp
 
 clean-Core-2f-cpp:
-	-$(RM) ./Core/cpp/maincpp.cyclo ./Core/cpp/maincpp.d ./Core/cpp/maincpp.o ./Core/cpp/maincpp.su
+	-$(RM) ./Core/cpp/maincpp.cyclo ./Core/cpp/maincpp.d ./Core/cpp/maincpp.o ./Core/cpp/maincpp.su ./Core/cpp/periphcpp.cyclo ./Core/cpp/periphcpp.d ./Core/cpp/periphcpp.o ./Core/cpp/periphcpp.su
 
 .PHONY: clean-Core-2f-cpp
 

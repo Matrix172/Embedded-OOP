@@ -27,6 +27,9 @@ void main_cpp();
 #endif
 
 #ifdef __cplusplus
+
+#include "periphhpp.hpp"
+
 #include <iostream>
 #include <string>
 #include <vector> // Inclusion de la bibliothèque <vector>

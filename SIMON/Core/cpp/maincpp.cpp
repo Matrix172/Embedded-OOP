@@ -52,7 +52,7 @@ int get_nb_joueurs(){
 	while (statut != 1 && statut != 2);
 	return statut;
 }
-
+/*
 void Motor_Pulse(){
 	HAL_TIM_PWM_Init(&htim3);
 	HAL_TIM_Base_Start(&htim3);
@@ -90,24 +90,34 @@ void Seg_Pulse(){
 	MAX7219_Clear();
 	MAX7219_Init();
 }
+*/
 
 void showaction(int action) {
+	Moteur moteur ("Moteur 1");
+	Buzzer buzzer ("Buzzer 1");
+	Seg seg ("SEG 1");
+	LEDs leds ("Leds 1");
+
 	switch (action) {
 	case 0:
 		printf("\r\nMoteur action\r\n");
-		Motor_Pulse();
+		moteur.Sequence();
+		//Motor_Pulse();
 		break;
 	case 1:
 		printf("\r\nBuzzer action\r\n");
-		Buzzer_Pulse();
+		buzzer.Sequence();
+		// Buzzer_Pulse();
 		break;
 	case 2:
 		printf("\r\nLEDs action\r\n");
-		LEDs_Pulse();
+		leds.Sequence();
+		// LEDs_Pulse();
 		break;
 	case 3:
 		printf("\r\n7Seg action\r\n");
-		Seg_Pulse();
+		seg.Sequence();
+		// Seg_Pulse();
 		break;
 	default:
 		printf("\r\nAction inconnue\r\n");
