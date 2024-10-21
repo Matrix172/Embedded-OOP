@@ -11,6 +11,68 @@ int get_nb_joueurs(){
 	return statut;
 }
 
+void Motor_Pulse(){
+	HAL_TIM_PWM_Init(&htim3);
+	HAL_TIM_Base_Start(&htim3);
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+	htim3.Instance->CCR1 = 250;
+	HAL_Delay(delai);
+	HAL_TIM_PWM_Stop(&htim3,TIM_CHANNEL_1);
+}
+
+void Buzzer_Pulse(){
+	int indice = 5;
+	for (int i =0; i<indice; i++){
+		HAL_TIM_Base_Start(&htim3);
+		HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
+		HAL_Delay(delai/5);
+		HAL_TIM_PWM_Stop(&htim3,TIM_CHANNEL_2);
+	}
+}
+
+void LEDs_Pulse(){
+	HAL_GPIO_WritePin(GPIOB, L0_Pin|L1_Pin|L2_Pin|L3_Pin|L4_Pin|L5_Pin|L6_Pin|L7_Pin, GPIO_PIN_SET);
+	HAL_Delay(delai/2);
+	HAL_GPIO_WritePin(GPIOB, L0_Pin|L1_Pin|L2_Pin|L3_Pin|L4_Pin|L5_Pin|L6_Pin|L7_Pin, GPIO_PIN_RESET);
+	HAL_Delay(delai/2);
+}
+
+void Seg_Pulse(){
+	MAX7219_Clear();
+	MAX7219_Init();
+	MAX7219_DisplayChar(1,'0', 0); // Pas de point décimal
+	MAX7219_DisplayChar(2,'0', 0); // Avec point décimal
+	MAX7219_DisplayChar(3,'0', 0); // Pas de point décimal
+	MAX7219_DisplayChar(4,'0', 0);
+	HAL_Delay(delai/6);
+	MAX7219_Clear();
+	MAX7219_Init();
+}
+
+void showaction(int action) {
+	switch (action) {
+	case 0:
+		printf("\r\nMoteur action\r\n");
+		Motor_Pulse();
+		break;
+	case 1:
+		printf("\r\nBuzzer action\r\n");
+		Buzzer_Pulse();
+		break;
+	case 2:
+		printf("\r\nLEDs action\r\n");
+		LEDs_Pulse();
+		break;
+	case 3:
+		printf("\r\n7Seg action\r\n");
+		Seg_Pulse();
+		break;
+	default:
+		printf("\r\nAction inconnue\r\n");
+		break;
+	}
+}
+
 void partieSimon(int nb_joueurs)
 {
 	srand(time(0));  // Initialiser le générateur de nombres aléatoires
@@ -30,6 +92,7 @@ void partieSimon(int nb_joueurs)
 		std::cout << "\n--- Tour " << ++tour << " ---" << std::endl;
 
 		// Montrer la séquence
+		simon.creationSequence();
 		simon.montrerSequence();
 
 		// Joueur 1 doit entrer la séquence

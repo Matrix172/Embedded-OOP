@@ -27,6 +27,7 @@ Drivers/display/max7219_Yncrea2.o: ../Drivers/display/max7219_Yncrea2.c \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_exti.h \
  C:/Users/mdejeante/STM32CubeIDE/workspace_1.16.0/Embedded-OOP/SIMON/Core/cpp/mainhpp.hpp \
+ C:/Users/mdejeante/STM32CubeIDE/workspace_1.16.0/Embedded-OOP/SIMON/Drivers/display/max7219_Yncrea2.h \
  ../Drivers/display/max7219_Yncrea2.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:
@@ -57,4 +58,5 @@ Drivers/display/max7219_Yncrea2.o: ../Drivers/display/max7219_Yncrea2.c \
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_exti.h:
 C:/Users/mdejeante/STM32CubeIDE/workspace_1.16.0/Embedded-OOP/SIMON/Core/cpp/mainhpp.hpp:
+C:/Users/mdejeante/STM32CubeIDE/workspace_1.16.0/Embedded-OOP/SIMON/Drivers/display/max7219_Yncrea2.h:
 ../Drivers/display/max7219_Yncrea2.h:

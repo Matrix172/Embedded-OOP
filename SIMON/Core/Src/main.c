@@ -46,6 +46,8 @@ TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 int statut = 0;
+int nb_max = 4;
+int delai = 1000;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -97,6 +99,7 @@ int main(void)
 	MX_TIM3_Init();
 	MX_SPI1_Init();
 	/* USER CODE BEGIN 2 */
+	MAX7219_Clear();
 	main_cpp();
 
 	/*
@@ -359,17 +362,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 		break;
 
 	case BTN1_Pin:
-		HAL_GPIO_TogglePin(L1_GPIO_Port, L1_Pin);
 		statut = 1;
 		break;
 
 	case BTN2_Pin:
-		HAL_GPIO_TogglePin(L2_GPIO_Port, L2_Pin);
 		statut = 2;
 		break;
 
 	case BTN3_Pin:
-		HAL_GPIO_TogglePin(L3_GPIO_Port, L3_Pin);
 		break;
 
 	case BTN4_Pin:

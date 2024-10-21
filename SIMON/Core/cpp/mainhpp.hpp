@@ -9,6 +9,8 @@
 #define CPP_MAIN_CPP_HPP_
 
 extern int statut;
+extern int nb_max;
+extern int delai;
 
 #ifdef __cplusplus
 extern "C"
@@ -16,7 +18,8 @@ extern "C"
 #endif
 
 #include "stm32l1xx_hal.h"
-void main_cpp();
+#include "max7219_Yncrea2.h"
+    void main_cpp();
 
 #ifdef __cplusplus
 }
@@ -25,7 +28,13 @@ void main_cpp();
 #ifdef __cplusplus
 #include <iostream>
 #include <string>
-#include <vector>  // Inclusion de la bibliothèque <vector>
+#include <vector> // Inclusion de la bibliothèque <vector>
+#include <cstdlib>  // Pour rand() et srand(
+
+extern void showaction(int action);
+extern void MAX7219_Clear(void);
+extern void MAX7219_Init(void);
+extern void MAX7219_DisplayChar(char digit, char character, char dp);
 
 class A
 {
@@ -56,7 +65,7 @@ private:
     int score;
 
 public:
-    Joueur(const std::string& nomJoueur) : nom(nomJoueur), score(0) {}
+    Joueur(const std::string &nomJoueur) : nom(nomJoueur), score(0) {}
 
     void augmenterScore() { score++; }
 
@@ -66,24 +75,50 @@ public:
 
 class SimonGame
 {
+private:
+    std::vector<int> sequence;                                                    // Séquence d'actions
+    std::vector<std::string> listeactions = {"Moteur", "Buzzer", "LEDs", "7Seg"}; // Les noms des actions
 
 public:
-    // Montre la séquence actuelle
+    // Constructeur qui initialise la graine pour le générateur de nombres aléatoires
+    SimonGame()
+    {
+        int seed = HAL_GetTick(); // Utiliser HAL_GetTick() pour obtenir une source pseudo-aléatoire
+        srand(seed);              // Initialiser la graine avec ce compteur
+    }
+
+    // Méthode pour créer une nouvelle séquence d'actions
+    void creationSequence()
+    {
+        for (int i = 0; i < nb_max; i++)
+        {
+            int action = rand() % 4; // Générer une action aléatoire (entre 0 et 3)
+            //printf("action %d\r\n", action);
+            sequence.push_back(action); // Ajouter l'action à la séquence
+        }
+    }
+
+    // Méthode pour montrer la séquence actuelle
     void montrerSequence()
-    {   
+    {
         std::cout << "Simon montre la séquence : ";
-        //Générer une séquence et communiquer avec les périphériques
-        std::cout << std::endl;
+        for (int action : sequence) // Parcourir chaque action dans la séquence
+        {
+            std::cout << listeactions[action] << " "; // Afficher le nom de l'action
+            showaction(action);
+        }
+        std::cout << std::endl; // Fin de ligne après avoir affiché toute la séquence
     }
 
     // Demande au joueur de répéter la séquence
-    bool saisirSequence(Joueur& joueur)
-    {   
-        // Si le joueur réussi, on ajoute à son score.
-        // Sinon, Game Over et le joueur qui a le + gagne.
-    	return(false);
+    bool saisirSequence(Joueur &joueur)
+    {
+        // Si le joueur réussit, on ajoute à son score.
+        // Sinon, Game Over et le joueur qui a le plus de points gagne.
+        return false;
     }
 };
+
 
 #endif
 
