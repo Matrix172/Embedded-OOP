@@ -62,7 +62,7 @@ class Joueur
 {
 private:
     std::string nom;
-    int score;
+    //int score;
 
 public:
     Joueur(const std::string &nomJoueur) : nom(nomJoueur), score(0) {}
