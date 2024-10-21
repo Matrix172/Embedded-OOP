@@ -97,6 +97,7 @@ int main(void)
 	MX_TIM3_Init();
 	MX_SPI1_Init();
 	/* USER CODE BEGIN 2 */
+	MAX7219_Clear();
 	main_cpp();
 
 	/*
@@ -380,6 +381,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 		break;
 	}
 }
+
 /* USER CODE END 4 */
 
 /**

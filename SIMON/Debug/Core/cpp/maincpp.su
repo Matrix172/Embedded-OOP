@@ -1,16 +1,17 @@
-C:\ST\STM32CubeIDE_1.16.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\arm-none-eabi\thumb\v7-m\nofp\bits\gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
-../Core/cpp/mainhpp.hpp:34:5:A::A()	16	static
-../Core/cpp/mainhpp.hpp:40:10:void A::hello()	16	static
-../Core/cpp/mainhpp.hpp:46:5:A::~A()	16	static
-../Core/cpp/mainhpp.hpp:59:5:Joueur::Joueur(const std::string&)	16	static
-../Core/cpp/mainhpp.hpp:63:9:int Joueur::getScore() const	16	static
-../Core/cpp/mainhpp.hpp:64:17:std::string Joueur::getNom() const	16	static
-../Core/cpp/mainhpp.hpp:72:10:void SimonGame::montrerSequence()	16	static
-../Core/cpp/mainhpp.hpp:80:10:bool SimonGame::saisirSequence(Joueur&)	16	static
-../Core/cpp/maincpp.cpp:7:5:int get_nb_joueurs()	8	static
-../Core/cpp/mainhpp.hpp:52:7:Joueur::~Joueur()	16	static
-../Core/cpp/maincpp.cpp:14:6:void partieSimon(int)	200	static
-../Core/cpp/maincpp.cpp:64:6:void main_cpp()	16	static
-../Core/cpp/maincpp.cpp:73:1:void __static_initialization_and_destruction_0(int, int)	16	static
-../Core/cpp/maincpp.cpp:73:1:cpp)	8	static
-../Core/cpp/maincpp.cpp:73:1:cpp)	8	static
+C:\ST\STM32CubeIDE_1.13.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623\tools\arm-none-eabi\include\c++\12.3.1\arm-none-eabi\thumb\v7-m\nofp\bits\gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+../Core/cpp/mainhpp.hpp:70:5:Joueur::Joueur(const std::string&)	16	static
+../Core/cpp/mainhpp.hpp:74:9:int Joueur::getScore() const	16	static
+../Core/cpp/mainhpp.hpp:75:17:std::string Joueur::getNom() const	16	static
+../Core/cpp/mainhpp.hpp:83:10:void SimonGame::montrerSequence()	16	static
+../Core/cpp/mainhpp.hpp:91:10:bool SimonGame::saisirSequence(Joueur&)	16	static
+../Core/cpp/maincpp.cpp:7:6:void Display_go()	8	static
+../Core/cpp/maincpp.cpp:13:6:void Display_joueur()	8	static
+../Core/cpp/maincpp.cpp:29:6:void Display_score(Joueur)	24	static
+../Core/cpp/maincpp.cpp:49:5:int get_nb_joueurs()	8	static
+../Core/cpp/mainhpp.hpp:62:7:Joueur::~Joueur()	16	static
+../Core/cpp/mainhpp.hpp:62:7:Joueur::Joueur(const Joueur&)	16	static
+../Core/cpp/maincpp.cpp:56:6:void partieSimon(int)	224	static
+../Core/cpp/maincpp.cpp:108:6:void main_cpp()	16	static
+../Core/cpp/maincpp.cpp:115:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Core/cpp/maincpp.cpp:115:1:cpp)	8	static
+../Core/cpp/maincpp.cpp:115:1:cpp)	8	static

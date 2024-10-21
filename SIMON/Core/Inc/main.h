@@ -35,6 +35,7 @@ extern "C" {
 #include "stdio.h"
 #include "stdlib.h"
 extern SPI_HandleTypeDef hspi1;
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

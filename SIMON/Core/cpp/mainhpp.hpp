@@ -8,7 +8,15 @@
 #ifndef CPP_MAIN_CPP_HPP_
 #define CPP_MAIN_CPP_HPP_
 
-extern int statut;
+//extern int statut;
+//extern void MAX7219_Init(void);
+//extern void MAX7219_ShutdownStart(void);
+//extern void MAX7219_ShutdownStop(void);
+//extern void MAX7219_DisplayTestStart(void);
+//extern void MAX7219_DisplayTestStop(void);
+//extern void MAX7219_SetBrightness(char brightness);
+//extern void MAX7219_Clear(void);
+//extern void MAX7219_DisplayChar(char digit, char character, char dp);
 
 #ifdef __cplusplus
 extern "C"
@@ -16,6 +24,7 @@ extern "C"
 #endif
 
 #include "stm32l1xx_hal.h"
+#include "max7219_Yncrea2.h"
 void main_cpp();
 
 #ifdef __cplusplus
@@ -26,6 +35,7 @@ void main_cpp();
 #include <iostream>
 #include <string>
 #include <vector>  // Inclusion de la bibliothèque <vector>
+extern int statut;
 
 class A
 {
@@ -53,9 +63,10 @@ class Joueur
 {
 private:
     std::string nom;
-    int score;
+    //int score;
 
 public:
+    int score;
     Joueur(const std::string& nomJoueur) : nom(nomJoueur), score(0) {}
 
     void augmenterScore() { score++; }
