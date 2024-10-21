@@ -48,7 +48,7 @@ TIM_HandleTypeDef htim3;
 int statut = 0;
 int nb_max = 4;
 int delai = 1000;
-int uaction = -1;
+int uaction = 5;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -362,21 +362,21 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 		HAL_GPIO_TogglePin(GPIOB, L0_Pin|L1_Pin|L2_Pin|L3_Pin|L4_Pin|L5_Pin|L6_Pin|L7_Pin);(GPIOB, L0_Pin|L1_Pin|L2_Pin|L3_Pin|L4_Pin|L5_Pin|L6_Pin|L7_Pin);
 		break;
 
-	case BTN1_Pin:
+	case BTN1_Pin: //Moteur
 		statut = 1;
 		uaction = 0;
 		break;
 
-	case BTN2_Pin:
+	case BTN2_Pin: //Buzzer
 		statut = 2;
 		uaction = 1;
 		break;
 
-	case BTN3_Pin:
+	case BTN3_Pin: //LEDs
 		uaction = 2;
 		break;
 
-	case BTN4_Pin:
+	case BTN4_Pin: //7seg
 		uaction = 3;
 		break;
 

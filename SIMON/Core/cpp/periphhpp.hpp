@@ -102,7 +102,7 @@ public :
     void ON() override {
         MAX7219_Clear();
         MAX7219_Init();
-        for (int i=0; i<4;i++){
+        for (int i=1; i<5;i++){
             MAX7219_DisplayChar(i,'0',0);
         }
     }

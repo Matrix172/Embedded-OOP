@@ -32,8 +32,8 @@ void main_cpp();
 
 #include <iostream>
 #include <string>
-#include <vector> // Inclusion de la bibliothèque <vector>
-#include <cstdlib>  // Pour rand() et srand(
+#include <vector>  // Inclusion de la bibliothèque <vector>
+#include <cstdlib> // Pour rand() et srand(
 
 extern void showaction(int action);
 extern void MAX7219_Clear(void);
@@ -80,8 +80,8 @@ public:
 class SimonGame
 {
 private:
-	std::vector<int> sequence;                                                    // Séquence d'actions
-	std::vector<int> sequenceUser;                                                    // Séquence d'actions
+	std::vector<int> sequence;													  // Séquence d'actions
+	std::vector<int> sequenceUser;												  // Séquence d'actions
 	std::vector<std::string> listeactions = {"Moteur", "Buzzer", "LEDs", "7Seg"}; // Les noms des actions
 
 public:
@@ -89,7 +89,7 @@ public:
 	SimonGame()
 	{
 		int seed = HAL_GetTick(); // Utiliser HAL_GetTick() pour obtenir une source pseudo-aléatoire
-		srand(seed);              // Initialiser la graine avec ce compteur
+		srand(seed);			  // Initialiser la graine avec ce compteur
 	}
 
 	// Méthode pour créer une nouvelle séquence d'actions
@@ -115,57 +115,87 @@ public:
 		std::cout << std::endl; // Fin de ligne après avoir affiché toute la séquence
 	}
 
-	// Demande au joueur de répéter la séquence
-	bool saisirSequence()
+	void vidersequence()
 	{
-		while(sequenceUser.size()!=4){
-			switch (uaction){
+		sequenceUser.clear();
+		uaction = 5;
+	}
+
+	void vidersequences(){
+		sequence.clear();
+		sequenceUser.clear();
+		uaction = 5;
+	}
+
+	// Demande au joueur de répéter la séquence
+	void saisirSequence()
+	{
+		while (sequenceUser.size() != 4)
+		{
+			switch (uaction)
+			{
 			case 0:
 				std::cout << "Moteur" << std::endl;
 				sequenceUser.push_back(uaction);
-				uaction = -1;
+				uaction = 5;
 				break;
 			case 1:
-				std::cout << "Buzz" << std::endl;
+				std::cout << "Buzzer" << std::endl;
 				sequenceUser.push_back(uaction);
-				uaction = -1;
+				uaction = 5;
 				break;
 			case 2:
-				std::cout << "Leds" << std::endl;
+				std::cout << "LEDs" << std::endl;
 				sequenceUser.push_back(uaction);
-				uaction = -1;
+				uaction = 5;
 				break;
 			case 3:
-				std::cout << "7" << std::endl;
+				std::cout << "7Seg" << std::endl;
 				sequenceUser.push_back(uaction);
-				uaction = -1;
+				uaction = 5;
 				break;
 			default:
 				break;
-
 			}
+			HAL_Delay(500); // Délai pour récupérer un vrai appui
 		}
-		// Si le joueur réussit, on ajoute à son score.
-		// Sinon, Game Over et le joueur qui a le plus de points gagne.
-		//return false;
 	}
-	void vidersequence(){
-		sequenceUser.clear();
-	}
-	bool sequencecompare(){
-		for (int i=0; i<4; i++){
-			if (sequence == sequenceUser){
-				std::cout << "c'est bon" << std::endl;
-				vidersequence();
-				return true;
-			}
-			else {
+
+	bool sequencecompare()
+	{
+		if (sequence.size() != sequenceUser.size())
+		{
+			std::cout << "Les sequences ont des tailles differentes." << std::endl;
+			return false;
+		}
+
+		/*
+		for (int i : sequence) {
+			std::cout << sequence[i] << std::endl;
+		}
+		for( int i:sequenceUser){
+			std::cout << sequenceUser[i] << std::endl;
+		}
+		*/
+
+
+		// Comparaison des éléments un par un
+		for (size_t i = 0; i < sequence.size(); i++)
+		{
+			if (sequence[i] != sequenceUser[i])
+			{
+				std::cout << "Erreur a l element " << i << " : attendu "
+						<< listeactions[sequence[i]] << " recu "
+						<< listeactions[sequenceUser[i]] << std::endl;
 				return false;
 			}
 		}
+
+		std::cout << "Les sequences correspondent !" << std::endl;
+		vidersequences();
+		return true;
 	}
 };
-
 
 #endif
 
