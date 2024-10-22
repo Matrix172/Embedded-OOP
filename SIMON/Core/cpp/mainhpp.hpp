@@ -11,6 +11,7 @@
 extern int statut;
 extern int nb_max;
 extern int delai;
+extern int jeu;
 
 #ifdef __cplusplus
 extern "C"
@@ -75,6 +76,29 @@ public:
 
 	int getScore() const { return score; }
 	std::string getNom() const { return nom; }
+
+	void DisplayScore(){
+		if ((this->getScore())<10){
+			MAX7219_Clear();
+			MAX7219_Init();
+			MAX7219_DisplayChar(1,'S', 0); // Avec point décimal
+			MAX7219_DisplayChar(2,'C', 1); // Pas de point décimal
+			//MAX7219_DisplayChar(3,'0', 0); // Avec point décimal
+			MAX7219_DisplayChar(4,this->getScore() + '0', 0); // Pas de point décimal
+		}
+		else if (this->getScore() > 9) {
+			// Cas où le score est supérieur ou égal à 10
+			int dizaines = this->getScore() / 10;   // Extraire le chiffre des dizaines
+			int unites = this->getScore() % 10;     // Extraire le chiffre des unités
+
+			MAX7219_Clear();
+			MAX7219_Init();
+			MAX7219_DisplayChar(1, 'S', 0); // Avec point décimal
+			MAX7219_DisplayChar(2, 'C', 1); // Pas de point décimal
+			MAX7219_DisplayChar(3, dizaines + '0', 0); // Affiche le chiffre des dizaines
+			MAX7219_DisplayChar(4, unites + '0', 0);   // Affiche le chiffre des unités
+		}
+	}
 };
 
 class SimonGame
@@ -130,27 +154,35 @@ public:
 	// Demande au joueur de répéter la séquence
 	void saisirSequence()
 	{
+		Moteur moteur ("Moteur 1");
+		Buzzer buzzer ("Buzzer 1");
+		Seg seg ("SEG 1");
+		LEDs leds ("Leds 1");
 		while (sequenceUser.size() != 4)
 		{
 			switch (uaction)
 			{
 			case 0:
 				std::cout << "Moteur" << std::endl;
+				moteur.SequenceU();
 				sequenceUser.push_back(uaction);
 				uaction = 5;
 				break;
 			case 1:
 				std::cout << "Buzzer" << std::endl;
+				buzzer.SequenceU();
 				sequenceUser.push_back(uaction);
 				uaction = 5;
 				break;
 			case 2:
 				std::cout << "LEDs" << std::endl;
+				leds.SequenceU();
 				sequenceUser.push_back(uaction);
 				uaction = 5;
 				break;
 			case 3:
 				std::cout << "7Seg" << std::endl;
+				seg.SequenceU();
 				sequenceUser.push_back(uaction);
 				uaction = 5;
 				break;
@@ -176,7 +208,7 @@ public:
 		for( int i:sequenceUser){
 			std::cout << sequenceUser[i] << std::endl;
 		}
-		*/
+		 */
 
 
 		// Comparaison des éléments un par un

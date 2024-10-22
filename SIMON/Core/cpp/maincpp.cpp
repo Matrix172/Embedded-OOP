@@ -4,27 +4,41 @@
 #include <cstdlib>
 #include <ctime>
 
-void Display_go(){
+void Display_gamestart(){
 	MAX7219_Clear();
 	MAX7219_Init();
-	MAX7219_DisplayChar(2,'G', 0); // Avec point décimal
-	MAX7219_DisplayChar(3,'O', 0); // Pas de point décimal
+	MAX7219_DisplayChar(1,'P', 0); // Avec point décimal
+	MAX7219_DisplayChar(2,'R', 0); // Avec point décimal
+	MAX7219_DisplayChar(3,'E', 0); // Pas de point décimal
+	MAX7219_DisplayChar(4,'T', 0); // Pas de point décimal
+	HAL_Delay(1000);
+	MAX7219_Clear();
 }
-void Display_joueur(){
+
+void Display_gameover(){
 	MAX7219_Clear();
 	MAX7219_Init();
-	if (statut==1){
-		MAX7219_DisplayChar(2,'J', 0); // Avec point décimal
-		MAX7219_DisplayChar(3,'1', 0); // Pas de point décimal
-	}
-	else if (statut==2){
-		MAX7219_DisplayChar(2,'J', 0); // Avec point décimal
-		MAX7219_DisplayChar(3,'2', 0); // Pas de point décimal
-	}
-	else{
-		MAX7219_Clear();
-	}
+	MAX7219_DisplayChar(2,'F', 0); // Avec point décimal
+	MAX7219_DisplayChar(3,'I', 0); // Pas de point décimal
+	MAX7219_DisplayChar(4,'N', 0); // Pas de point décimal
 }
+
+void Display_joueur1(){
+	MAX7219_Clear();
+	MAX7219_Init();
+	MAX7219_DisplayChar(2,'J', 0); // Avec point décimal
+	MAX7219_DisplayChar(3,'1', 0); // Pas de point décimal
+}
+
+void Display_joueur2(){
+	MAX7219_Clear();
+	MAX7219_Init();
+	MAX7219_Init();
+	MAX7219_DisplayChar(2,'J', 0); // Avec point décimal
+	MAX7219_DisplayChar(3,'2', 0); // Pas de point décimal
+
+}
+
 
 void Display_score(Joueur joueur){
 	if ((joueur.getScore())<10){
@@ -84,64 +98,99 @@ void showaction(int action) {
 
 void partieSimon(int nb_joueurs)
 {
-    srand(time(0));  // Initialiser le générateur de nombres aléatoires
+	srand(time(0));  // Initialiser le générateur de nombres aléatoires
 
-    // Création des joueurs
-    Joueur J1("J1");
-    Joueur J2("J2");
+	// Création des joueurs
+	Joueur J1("J1");
+	Joueur J2("J2");
 
-    // Instancier le jeu
-    SimonGame simon;
+	// Instancier le jeu
+	SimonGame simon;
 
-    int tour = 0;
-    bool partieEnCours = true;
-    int joueurCourant = 1;  // Pour suivre quel joueur doit jouer
+	int tour = 0;
+//	int jeu = 1;
+	jeu = 1;
+	bool partieEnCours = true;
+	int joueurCourant = 1;  // Pour suivre quel joueur doit jouer
 
-    while (partieEnCours)
-    {
-        std::cout << "\n--- Tour " << ++tour << " ---" << std::endl;
+	while (partieEnCours)
+	{
+		std::cout << "\n--- Tour " << ++tour << " ---" << std::endl;
 
-        // Alternance entre les joueurs
-        if (joueurCourant == 1)
-        {
-            std::cout << "\nAu tour de " << J1.getNom() << " de jouer." << std::endl;
-        }
-        else if (joueurCourant == 2)
-        {
-            std::cout << "\nAu tour de " << J2.getNom() << " de jouer." << std::endl;
-        }
+		// Alternance entre les joueurs
+		if (joueurCourant == 1)
+		{
+			std::cout << "\nAu tour de " << J1.getNom() << " de jouer." << std::endl;
+		}
+		else if (joueurCourant == 2)
+		{
+			std::cout << "\nAu tour de " << J2.getNom() << " de jouer." << std::endl;
+		}
 
-        // Montrer la séquence par Simon
-        simon.creationSequence();
-        simon.montrerSequence();
+		// Montrer la séquence par Simon
+		simon.creationSequence();
+		Display_gamestart();
+		simon.montrerSequence();
 
-        // Le joueur entre la séquence
-        simon.vidersequence();
-        simon.saisirSequence();
+		// Le joueur entre la séquence
+		simon.vidersequence();
+		simon.saisirSequence();
 
-        // Comparer la séquence avec celle de Simon
-        if (!simon.sequencecompare())
-        {
-            std::cout << "\n" << (joueurCourant == 1 ? J1.getNom() : J2.getNom()) << " a fait une erreur ! Fin de la partie." << std::endl;
-            partieEnCours = false;
-            // Affichage des scores
-            break;
-        }
+		// Comparer la séquence avec celle de Simon
+		if (!simon.sequencecompare())
+		{
+			std::cout << "\n" << (joueurCourant == 1 ? J1.getNom() : J2.getNom()) << " a fait une erreur ! Fin de la partie." << std::endl;
+			partieEnCours = false;
+			if (statut==1){
+				Display_joueur1();
+				HAL_Delay(2000);
+				J1.DisplayScore();
+				HAL_Delay(2000);
+				Display_gameover();
 
-        // Alterner entre les joueurs
-        if (nb_joueurs == 2)
-        {
-            joueurCourant = (joueurCourant == 1) ? 2 : 1;  // Alterner entre J1 et J2
-        }
-    }
+			}
+			else if (statut==2){
+				Display_joueur1();
+				HAL_Delay(2000);
+				J1.DisplayScore();
+				HAL_Delay(2000);
+				Display_joueur2();
+				HAL_Delay(2000);
+				J2.DisplayScore();
+				HAL_Delay(2000);
+				Display_gameover();
+			}
+			else {
+				MAX7219_Clear();
+			}
+			// Affichage des scores
+			break;
+		}
+		else
+		{
+			if (joueurCourant == 1) {
+				J1.augmenterScore();
+				std::cout << "\nLe score de " << J1.getNom() << " est de : " << J1.getScore() << std::endl;
+			} else {
+				J2.augmenterScore();
+				std::cout << "\nLe score de " << J2.getNom() << " est de : " << J2.getScore() << std::endl;
+			}
+		}
 
-    // Fin de partie, afficher les scores
-    std::cout << "\nFin de la partie ! Scores : " << std::endl;
-    std::cout << J1.getNom() << " : " << J1.getScore() << " points" << std::endl;
-    if (nb_joueurs == 2)
-    {
-        std::cout << J2.getNom() << " : " << J2.getScore() << " points" << std::endl;
-    }
+		// Alterner entre les joueurs
+		if (nb_joueurs == 2)
+		{
+			joueurCourant = (joueurCourant == 1) ? 2 : 1;  // Alterner entre J1 et J2
+		}
+	}
+
+	// Fin de partie, afficher les scores
+	std::cout << "\nFin de la partie ! Scores : " << std::endl;
+	std::cout << J1.getNom() << " : " << J1.getScore() << " points" << std::endl;
+	if (nb_joueurs == 2)
+	{
+		std::cout << J2.getNom() << " : " << J2.getScore() << " points" << std::endl;
+	}
 }
 
 void main_cpp(void) {
