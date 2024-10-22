@@ -21,24 +21,9 @@ void Display_gameover(){
 	MAX7219_DisplayChar(2,'F', 0); // Avec point décimal
 	MAX7219_DisplayChar(3,'I', 0); // Pas de point décimal
 	MAX7219_DisplayChar(4,'N', 0); // Pas de point décimal
-}
-
-void Display_joueur1(){
+	HAL_Delay(2000);
 	MAX7219_Clear();
-	MAX7219_Init();
-	MAX7219_DisplayChar(2,'J', 0); // Avec point décimal
-	MAX7219_DisplayChar(3,'1', 0); // Pas de point décimal
 }
-
-void Display_joueur2(){
-	MAX7219_Clear();
-	MAX7219_Init();
-	MAX7219_Init();
-	MAX7219_DisplayChar(2,'J', 0); // Avec point décimal
-	MAX7219_DisplayChar(3,'2', 0); // Pas de point décimal
-
-}
-
 
 void Display_score(Joueur joueur){
 	if ((joueur.getScore())<10){
@@ -75,23 +60,23 @@ void showaction(int action) {
 
 	switch (action) {
 	case 0:
-		printf("\r\nMoteur action\r\n");
+		//printf("\r\nMoteur action\r\n");
 		moteur.Sequence();
 		break;
 	case 1:
-		printf("\r\nBuzzer action\r\n");
+		//printf("\r\nBuzzer action\r\n");
 		buzzer.Sequence();
 		break;
 	case 2:
-		printf("\r\nLEDs action\r\n");
+		//printf("\r\nLEDs action\r\n");
 		leds.Sequence();
 		break;
 	case 3:
-		printf("\r\n7Seg action\r\n");
+		//printf("\r\n7Seg action\r\n");
 		seg.Sequence();
 		break;
 	default:
-		printf("\r\nAction inconnue\r\n");
+		//printf("\r\nAction inconnue\r\n");
 		break;
 	}
 }
@@ -101,15 +86,14 @@ void partieSimon(int nb_joueurs)
 	srand(time(0));  // Initialiser le générateur de nombres aléatoires
 
 	// Création des joueurs
-	Joueur J1("J1");
-	Joueur J2("J2");
+	Joueur J1("1");
+	Joueur J2("2");
 
 	// Instancier le jeu
 	SimonGame simon;
 
 	int tour = 0;
-//	int jeu = 1;
-	jeu = 1;
+	int nb_player = statut;
 	bool partieEnCours = true;
 	int joueurCourant = 1;  // Pour suivre quel joueur doit jouer
 
@@ -141,29 +125,19 @@ void partieSimon(int nb_joueurs)
 		{
 			std::cout << "\n" << (joueurCourant == 1 ? J1.getNom() : J2.getNom()) << " a fait une erreur ! Fin de la partie." << std::endl;
 			partieEnCours = false;
-			if (statut==1){
-				Display_joueur1();
-				HAL_Delay(2000);
-				J1.DisplayScore();
-				HAL_Delay(2000);
+			if (nb_player==1){
+				J1.affichage();
 				Display_gameover();
 
 			}
-			else if (statut==2){
-				Display_joueur1();
-				HAL_Delay(2000);
-				J1.DisplayScore();
-				HAL_Delay(2000);
-				Display_joueur2();
-				HAL_Delay(2000);
-				J2.DisplayScore();
-				HAL_Delay(2000);
+			else if (nb_player==2){
+				J1.affichage();
+				J2.affichage();
 				Display_gameover();
 			}
 			else {
 				MAX7219_Clear();
 			}
-			// Affichage des scores
 			break;
 		}
 		else

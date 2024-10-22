@@ -359,45 +359,31 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 
-	if (jeu==0){
-		switch (GPIO_Pin){
-		case BTN1_Pin: //Moteur
-			statut = 1;
-			break;
-
-		case BTN2_Pin: //Buzzer
-			statut = 2;
-			break;
-
-		default :
-			break;
-		}
-	}
-	else if (jeu==1){
-		switch (GPIO_Pin){
+	switch(GPIO_Pin){
 		case BTNCARTE_Pin :
 			HAL_GPIO_TogglePin(GPIOB, L0_Pin|L1_Pin|L2_Pin|L3_Pin|L4_Pin|L5_Pin|L6_Pin|L7_Pin);(GPIOB, L0_Pin|L1_Pin|L2_Pin|L3_Pin|L4_Pin|L5_Pin|L6_Pin|L7_Pin);
 			break;
 
 		case BTN1_Pin: //Moteur
+			statut = 1;
 			uaction = 0;
 			break;
-
-		case BTN2_Pin: //Buzzer
+		
+		case BTN2_Pin:
+			statut = 2;
 			uaction = 1;
 			break;
 
-		case BTN3_Pin: //LEDs
+		case BTN3_Pin:
 			uaction = 2;
 			break;
-
-		case BTN4_Pin: //7seg
+		
+		case BTN4_Pin:
 			uaction = 3;
 			break;
-
-		default :
+		
+		default:
 			break;
-		}
 	}
 }
 

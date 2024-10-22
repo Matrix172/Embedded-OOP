@@ -20,8 +20,8 @@ extern "C"
 
 #include "stm32l1xx_hal.h"
 #include "max7219_Yncrea2.h"
-extern int uaction;
-void main_cpp();
+	extern int uaction;
+	void main_cpp();
 
 #ifdef __cplusplus
 }
@@ -41,28 +41,6 @@ extern void MAX7219_Clear(void);
 extern void MAX7219_Init(void);
 extern void MAX7219_DisplayChar(char digit, char character, char dp);
 
-class A
-{
-public:
-	// Constructeur par défaut
-	A()
-	{
-		std::cout << "Constructeur de A appelé" << std::endl;
-	}
-
-	// Méthode hello()
-	void hello(void)
-	{
-		std::cout << "Hello CPP" << std::endl;
-	}
-
-	// Destructeur
-	~A()
-	{
-		std::cout << "Destructeur de A appelé" << std::endl;
-	}
-};
-
 class Joueur
 {
 private:
@@ -77,27 +55,58 @@ public:
 	int getScore() const { return score; }
 	std::string getNom() const { return nom; }
 
-	void DisplayScore(){
-		if ((this->getScore())<10){
+	void DisplayScore()
+	{
+		if ((this->getScore()) < 10)
+		{
 			MAX7219_Clear();
 			MAX7219_Init();
-			MAX7219_DisplayChar(1,'S', 0); // Avec point décimal
-			MAX7219_DisplayChar(2,'C', 1); // Pas de point décimal
-			//MAX7219_DisplayChar(3,'0', 0); // Avec point décimal
-			MAX7219_DisplayChar(4,this->getScore() + '0', 0); // Pas de point décimal
+			MAX7219_DisplayChar(1, 'S', 0);					   // Avec point décimal
+			MAX7219_DisplayChar(2, 'C', 1);					   // Pas de point décimal
+			MAX7219_DisplayChar(4, this->getScore() + '0', 0); // Pas de point décimal
 		}
-		else if (this->getScore() > 9) {
+		else if (this->getScore() > 9)
+		{
 			// Cas où le score est supérieur ou égal à 10
-			int dizaines = this->getScore() / 10;   // Extraire le chiffre des dizaines
-			int unites = this->getScore() % 10;     // Extraire le chiffre des unités
+			int dizaines = this->getScore() / 10; // Extraire le chiffre des dizaines
+			int unites = this->getScore() % 10;	  // Extraire le chiffre des unités
 
 			MAX7219_Clear();
 			MAX7219_Init();
-			MAX7219_DisplayChar(1, 'S', 0); // Avec point décimal
-			MAX7219_DisplayChar(2, 'C', 1); // Pas de point décimal
+			MAX7219_DisplayChar(1, 'S', 0);			   // Avec point décimal
+			MAX7219_DisplayChar(2, 'C', 1);			   // Pas de point décimal
 			MAX7219_DisplayChar(3, dizaines + '0', 0); // Affiche le chiffre des dizaines
 			MAX7219_DisplayChar(4, unites + '0', 0);   // Affiche le chiffre des unités
 		}
+	}
+
+	void DisplayJoueur()
+	{
+		std::string nomJoueur = this->getNom();
+
+		MAX7219_Clear();
+		MAX7219_Init();
+		MAX7219_DisplayChar(2, 'J', 0); // Avec point décimal
+
+		// Vérifiez si le nom n'est pas vide avant d'accéder au premier caractère
+		if (!nomJoueur.empty())
+		{
+			char chiffre = nomJoueur[0];		// Obtenez le premier caractère
+			MAX7219_DisplayChar(3, chiffre, 0); // Affiche le premier caractère du nom
+		}
+		else
+		{
+			// Gérer le cas où le nom est vide (si nécessaire)
+			MAX7219_DisplayChar(3, ' ', 0); // Affiche un espace ou un autre caractère par défaut
+		}
+	}
+
+	void affichage()
+	{
+		this->DisplayJoueur();
+		HAL_Delay(2000);
+		this->DisplayScore();
+		HAL_Delay(2000);
 	}
 };
 
@@ -122,7 +131,7 @@ public:
 		for (int i = 0; i < nb_max; i++)
 		{
 			int action = rand() % 4; // Générer une action aléatoire (entre 0 et 3)
-			printf("action %d\r\n", action);
+			// printf("action %d\r\n", action);
 			sequence.push_back(action); // Ajouter l'action à la séquence
 		}
 	}
@@ -130,7 +139,7 @@ public:
 	// Méthode pour montrer la séquence actuelle
 	void montrerSequence()
 	{
-		std::cout << "Simon montre la séquence : ";
+		std::cout << "Simon montre la sequence : ";
 		for (int action : sequence) // Parcourir chaque action dans la séquence
 		{
 			std::cout << listeactions[action] << " "; // Afficher le nom de l'action
@@ -145,7 +154,8 @@ public:
 		uaction = 5;
 	}
 
-	void vidersequences(){
+	void vidersequences()
+	{
 		sequence.clear();
 		sequenceUser.clear();
 		uaction = 5;
@@ -154,10 +164,10 @@ public:
 	// Demande au joueur de répéter la séquence
 	void saisirSequence()
 	{
-		Moteur moteur ("Moteur 1");
-		Buzzer buzzer ("Buzzer 1");
-		Seg seg ("SEG 1");
-		LEDs leds ("Leds 1");
+		Moteur moteur("Moteur 1");
+		Buzzer buzzer("Buzzer 1");
+		Seg seg("SEG 1");
+		LEDs leds("Leds 1");
 		while (sequenceUser.size() != 4)
 		{
 			switch (uaction)
@@ -201,24 +211,14 @@ public:
 			return false;
 		}
 
-		/*
-		for (int i : sequence) {
-			std::cout << sequence[i] << std::endl;
-		}
-		for( int i:sequenceUser){
-			std::cout << sequenceUser[i] << std::endl;
-		}
-		 */
-
-
 		// Comparaison des éléments un par un
 		for (size_t i = 0; i < sequence.size(); i++)
 		{
 			if (sequence[i] != sequenceUser[i])
 			{
 				std::cout << "Erreur a l element " << i << " : attendu "
-						<< listeactions[sequence[i]] << " recu "
-						<< listeactions[sequenceUser[i]] << std::endl;
+						  << listeactions[sequence[i]] << " recu "
+						  << listeactions[sequenceUser[i]] << std::endl;
 				return false;
 			}
 		}
